@@ -1,0 +1,61 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+#conversation .display {
+  float: left;
+  height: 400px;
+  width: 78%;
+  border: solid 1px #ccc;
+  margin: 15px 2% 15px 0;
+  -webkit-border-radius: 8px;
+          border-radius: 8px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.display .comment {
+  margin: 1em;
+}
+.display .user {
+  display: inline-block;
+  margin-right: 0.5em;
+}
+.display .user:after {
+  content: ": ";
+}
+.display .copy {
+  display: inline-block;
+}
+/*
+
+.users {
+  float: left;
+  height: 400px;
+  width: 20%;
+  border: solid 1px #ccc;
+  margin: 15px 0;
+  -webkit-border-radius: 8px;
+          border-radius: 8px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+
+#conversation .input {
+  width: 90%;
+  padding: 4px 12px;
+  border: solid 1px #ccc;
+  outline: none;
+
+  -webkit-border-radius: 8px;
+          border-radius: 8px;
+}
+
+#conversation .send {}
+*/
