@@ -1,1 +1,2 @@
-# A websockets chat type thing using React
+# A WebSocket/React chat type thing
+Experimentin' 'n such
