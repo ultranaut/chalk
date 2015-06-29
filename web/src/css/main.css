@@ -3,12 +3,12 @@ body {
 }
 .starter-template {
   padding: 40px 15px;
-  text-align: center;
 }
 
+#app .messages,
 #conversation .display {
   float: left;
-  height: 400px;
+  min-height: 400px;
   width: 78%;
   border: solid 1px #ccc;
   margin: 15px 2% 15px 0;
@@ -18,16 +18,21 @@ body {
      -moz-box-sizing: border-box;
           box-sizing: border-box;
 }
+.messages .comment,
 .display .comment {
   margin: 1em;
 }
+.messages .user,
 .display .user {
   display: inline-block;
   margin-right: 0.5em;
+  font-weight: bold;
 }
+.messages .user:after,
 .display .user:after {
   content: ": ";
 }
+.messages .copy,
 .display .copy {
   display: inline-block;
 }
