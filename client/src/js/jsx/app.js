@@ -26,12 +26,12 @@ var App = React.createClass({   // eslint-disable-line no-unused-vars
     console.info('Nickname:', nickname);
   },
 
-  handleSubmit: function (e) {
+  sendMessage: function (e) {
     var input = e.target.value;
     if (input) {
       this.socket.emit('newMessage', {message: input});
     }
-    e.target.value = '';
+
   },
 
   initConversation: function (messages) {
@@ -62,7 +62,7 @@ var App = React.createClass({   // eslint-disable-line no-unused-vars
 
   render: function () {
     return (
-      <Display {...this.state} />
+      <Display {...this.state} sendMessage={this.sendMessage} />
     );
   }
 });
@@ -76,7 +76,7 @@ var Display = React.createClass({  // eslint-disable-line no-unused-vars
       <div id="chat-app">
         <header><h1>chat</h1></header>
         <MessageList messages={this.props.messages} />
-        <Input />
+        <Input sendMessage={this.props.sendMessage} />
       </div>
     );
   }
@@ -120,9 +120,28 @@ var Message = React.createClass({  // eslint-disable-line no-unused-vars
  * --- Input ----------------------------------------------------------
  */
 var Input = React.createClass({  // eslint-disable-line no-unused-vars
+  getInitialState: function () {
+    return { message: '' };
+  },
+  handleChange: function (e) {
+    if (e.keyCode === 13) {
+      return this.handleSubmit(e);
+    }
+    this.setState({ message: e.target.value });
+  },
+  handleSubmit: function (e) {
+    this.props.sendMessage(e);
+    this.setState({ message: '' });
+  },
   render: function () {
     return (
-      <input type="text" className="message-input" value="" placeholder="Type here..." />
+      <input type="text"
+             ref="messageInput"
+             className="message-input"
+             onChange={this.handleChange}
+             onKeyDown={this.handleChange}
+             value={this.state.message}
+             placeholder="Type here..." />
     );
   }
 });
