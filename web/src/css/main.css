@@ -7,9 +7,7 @@ body {
 
 #app .messages,
 #conversation .display {
-  float: left;
-  min-height: 400px;
-  width: 78%;
+  min-height: 200px;
   border: solid 1px #ccc;
   margin: 15px 2% 15px 0;
   -webkit-border-radius: 8px;
@@ -18,49 +16,18 @@ body {
      -moz-box-sizing: border-box;
           box-sizing: border-box;
 }
-.messages .comment,
-.display .comment {
+
+.messages .comment {
   margin: 1em;
 }
-.messages .user,
-.display .user {
+.messages .user {
   display: inline-block;
   margin-right: 0.5em;
   font-weight: bold;
 }
-.messages .user:after,
-.display .user:after {
+.messages .user:after {
   content: ": ";
 }
-.messages .copy,
-.display .copy {
+.messages .copy {
   display: inline-block;
 }
-/*
-
-.users {
-  float: left;
-  height: 400px;
-  width: 20%;
-  border: solid 1px #ccc;
-  margin: 15px 0;
-  -webkit-border-radius: 8px;
-          border-radius: 8px;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-
-#conversation .input {
-  width: 90%;
-  padding: 4px 12px;
-  border: solid 1px #ccc;
-  outline: none;
-
-  -webkit-border-radius: 8px;
-          border-radius: 8px;
-}
-
-#conversation .send {}
-*/

@@ -65,9 +65,8 @@ var Display = React.createClass({  // eslint-disable-line no-unused-vars
   render: function () {
     return (
       <div id="chatApp">
-        <div>App</div>
         <MessageList messages={this.props.messages} />
-        <UsersList />
+        <Input />
       </div>
     );
   }
@@ -77,8 +76,8 @@ var Display = React.createClass({  // eslint-disable-line no-unused-vars
 
 var MessageList = React.createClass({   // eslint-disable-line no-unused-vars
   render: function () {
-    var messages = this.props.messages.map(function (message) {
-      return <Message {...message} />;
+    var messages = this.props.messages.map(function (message, idx) {
+      return <Message key={idx} {...message} />;
     });
     return (
       <div className="messages">
@@ -103,6 +102,21 @@ var UsersList = React.createClass({  // eslint-disable-line no-unused-vars
   render: function () {
     return (
       <div className="users">Users</div>
+    );
+  }
+});
+
+var Input = React.createClass({  // eslint-disable-line no-unused-vars
+  render: function () {
+    return (
+      <div className="row message-input">
+        <div className="form-inline">
+          <div className="form-group">
+            <input type="text" className="form-control text input" value="" />
+          </div>
+          <button className="btn btn-primary send">send</button>
+        </div>
+      </div>
     );
   }
 });
