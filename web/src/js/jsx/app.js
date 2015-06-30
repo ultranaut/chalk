@@ -1,7 +1,12 @@
 /* global React */
 'use strict';
 
-
+/*
+ * --- App ------------------------------------------------------------
+ *   the root level, basically just a controller, returns a
+ *   Display component which is where the view happens
+ * --------------------------------------------------------------------
+ */
 var App = React.createClass({   // eslint-disable-line no-unused-vars
   getInitialState: function () {
     return {
@@ -12,6 +17,7 @@ var App = React.createClass({   // eslint-disable-line no-unused-vars
 
   socket: null,
 
+  /* TODO: actual login */
   handleConnect: function () {
     var nickname = ['john', 'rose', 'elroy', 'steve', 'allison', 'gertie']
                    [Math.floor(Math.random() * 6)];
@@ -61,32 +67,44 @@ var App = React.createClass({   // eslint-disable-line no-unused-vars
   }
 });
 
+/*
+ * --- Display --------------------------------------------------------
+ */
 var Display = React.createClass({  // eslint-disable-line no-unused-vars
   render: function () {
     return (
-      <div id="chatApp">
+      <div id="chat-app">
+        <header><h1>chat</h1></header>
         <MessageList messages={this.props.messages} />
         <Input />
       </div>
     );
   }
-
-
 });
 
+
+/*
+ * --- MessageList ----------------------------------------------------
+ */
 var MessageList = React.createClass({   // eslint-disable-line no-unused-vars
   render: function () {
     var messages = this.props.messages.map(function (message, idx) {
       return <Message key={idx} {...message} />;
     });
     return (
-      <div className="messages">
-        {messages}
+      // wrapper div needed for css
+      <div className="wrapper">
+        <div className="messages">
+          {messages}
+        </div>
       </div>
     );
   }
 });
 
+/*
+ * --- Messages -------------------------------------------------------
+ */
 var Message = React.createClass({  // eslint-disable-line no-unused-vars
   render: function () {
     return (
@@ -98,29 +116,21 @@ var Message = React.createClass({  // eslint-disable-line no-unused-vars
   }
 });
 
-var UsersList = React.createClass({  // eslint-disable-line no-unused-vars
-  render: function () {
-    return (
-      <div className="users">Users</div>
-    );
-  }
-});
-
+/*
+ * --- Input ----------------------------------------------------------
+ */
 var Input = React.createClass({  // eslint-disable-line no-unused-vars
   render: function () {
     return (
-      <div className="row message-input">
-        <div className="form-inline">
-          <div className="form-group">
-            <input type="text" className="form-control text input" value="" />
-          </div>
-          <button className="btn btn-primary send">send</button>
-        </div>
-      </div>
+      <input type="text" className="message-input" value="" placeholder="Type here..." />
     );
   }
 });
 
+/*
+ * --- Its's go time --------------------------------------------------
+ */
 /* eslint-disable no-unused-vars*/
-var chatApp = React.render(<App url='http://localhost:1337' />, document.getElementById('app'));
+var chatApp = React.render(<App url='http://localhost:1337' />,
+                           document.querySelector('.container'));
 /* eslint-enable no-unused-vars*/
