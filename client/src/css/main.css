@@ -15,6 +15,7 @@ html, body {
   width: 100%;
   margin: 0;
   padding: 0;
+  background: #055;
 }
 
 header {
@@ -24,7 +25,7 @@ header {
   position: absolute;
   right: 0;
   width: 100%;
-  background: #033;
+  background: #055;
   color: white;
   margin: 0;
   padding: 0;
@@ -47,6 +48,16 @@ h1 {
   padding: 40px 0;
 }
 
+#login {
+  width: 100%;
+}
+
+#login .nickname {
+  font-size: 120%;
+  margin: 100px auto 0;
+  display: block;
+}
+
 .wrapper {
   height: 100%;
 }
@@ -56,6 +67,7 @@ h1 {
   margin: 0;
   overflow-y: scroll;
   padding: 10px 20px 10px 20px;
+  background: #fff;
 }
 .messages::-webkit-scrollbar {
     display: none;

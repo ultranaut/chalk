@@ -11,19 +11,27 @@ var App = React.createClass({   // eslint-disable-line no-unused-vars
   getInitialState: function () {
     return {
       messages: [],
-      users: []
+      users: [],
+      connected: false,
+      loggedIn: false
     };
   },
 
   socket: null,
 
+  handleConnection: function () {
+    this.setState({ connected: true });
+  },
+
   /* TODO: actual login */
-  handleConnect: function () {
-    var nickname = ['john', 'rose', 'elroy', 'steve', 'allison', 'gertie']
-                   [Math.floor(Math.random() * 6)];
+  tryLogin: function (nickname) {
+    // console.log('tryLogin');
+    // var nickname = ['john', 'rose', 'elroy', 'steve', 'allison', 'gertie']
+    //                [Math.floor(Math.random() * 6)];
 
     this.socket.emit('setNickname', nickname);
     console.info('Nickname:', nickname);
+    this.setState({ loggedIn: true });
   },
 
   sendMessage: function (e) {
@@ -53,8 +61,9 @@ var App = React.createClass({   // eslint-disable-line no-unused-vars
   },
 
   componentDidMount: function () {
+    // set up the websocket
     var socket = this.socket = window.io.connect(this.props.url);
-    socket.on('connect', this.handleConnect);
+    socket.on('connect', this.handleConnection);
     socket.on('pushMessage', this.displayMessage);
     socket.on('initConversation', this.initConversation);
     socket.on('updateUserList', this.updateUsers);
@@ -62,7 +71,9 @@ var App = React.createClass({   // eslint-disable-line no-unused-vars
 
   render: function () {
     return (
-      <Display {...this.state} sendMessage={this.sendMessage} />
+      <Display sendMessage={this.sendMessage}
+               tryLogin={this.tryLogin}
+               {...this.state} />
     );
   }
 });
@@ -75,8 +86,48 @@ var Display = React.createClass({  // eslint-disable-line no-unused-vars
     return (
       <div id="chat-app">
         <header><h1>chat</h1></header>
-        <MessageList messages={this.props.messages} />
-        <Input sendMessage={this.props.sendMessage} />
+        { this.props.loggedIn ?
+            <MessageList messages={this.props.messages} /> :
+            <Login tryLogin={this.props.tryLogin} /> }
+        { this.props.loggedIn ?
+            <Input sendMessage={this.props.sendMessage} /> :
+            null }
+      </div>
+    );
+  }
+});
+
+/*
+ * --- Login ----------------------------------------------------------
+ */
+var Login = React.createClass({  // eslint-disable-line no-unused-vars
+  getInitialState: function () {
+    return {
+      username: ''
+    };
+  },
+  submitUser: function () {
+    this.props.tryLogin(this.state.username);
+  },
+  updateInput: function (e) {
+    console.log('update');
+    if (e.keyCode === 13) {
+      console.log('enter');
+      return this.submitUser();
+    }
+    this.setState({ username: e.target.value });
+  },
+  render: function () {
+    return (
+      <div id="login">
+        <div className="wrapper">
+          <input type="text"
+                className="nickname"
+                value={this.state.username}
+                onChange={this.updateInput}
+                onKeyDown={this.updateInput}
+                placeholder="Nickname..." />
+        </div>
       </div>
     );
   }
