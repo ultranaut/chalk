@@ -3,17 +3,31 @@
 
 var gulp = require('gulp');
 var connect = require('gulp-connect');
-var plumber = require('gulp-plumber');
 var lint = require('gulp-eslint');
+var plumber = require('gulp-plumber');
 var react = require('gulp-react');
+var sass = require('gulp-sass');
 
 var paths = {
   src: './src',
   html: './src/*.html',
   js: './src/js/**/*.js',
   jsx: './src/js/jsx/**/*.js',
-  css: './src/css/*.css'
+  css: './src/css',
+  sass: './src/css/sass/*.scss'
 };
+var options = {
+  sass: {
+    outputStyle: 'compressed'
+  }
+};
+
+gulp.task('sass', function() {
+  return gulp.src(paths.sass)
+    .pipe(plumber())
+    .pipe(sass(options.sass).on('error', sass.logError))
+    .pipe(gulp.dest(paths.css));
+});
 
 gulp.task('connect', function () {
   connect.server({
@@ -45,7 +59,7 @@ gulp.task('react', function () {
     .pipe(connect.reload());
 });
 
-gulp.task('css', function () {
+gulp.task('css', ['sass'], function () {
   return gulp.src(paths.css)
     .pipe(plumber())
     .pipe(connect.reload());
@@ -56,6 +70,7 @@ gulp.task('watch', function () {
   gulp.watch([paths.js], ['js']);
   gulp.watch([paths.jsx], ['react']);
   gulp.watch([paths.css], ['css']);
+  gulp.watch([paths.sass], ['sass']);
 });
 
-gulp.task('default', ['connect', 'html', 'react', 'js', 'watch']);
+gulp.task('default', ['connect', 'html', 'css', 'react', 'js', 'watch']);
