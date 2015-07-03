@@ -25,12 +25,7 @@ var App = React.createClass({   // eslint-disable-line no-unused-vars
 
   /* TODO: actual login */
   tryLogin: function (nickname) {
-    // console.log('tryLogin');
-    // var nickname = ['john', 'rose', 'elroy', 'steve', 'allison', 'gertie']
-    //                [Math.floor(Math.random() * 6)];
-
     this.socket.emit('setNickname', nickname);
-    console.info('Nickname:', nickname);
     this.setState({ loggedIn: true });
   },
 
@@ -48,7 +43,6 @@ var App = React.createClass({   // eslint-disable-line no-unused-vars
     });
   },
   displayMessage: function (message) {
-    console.log(message);
     this.setState({
       messages: this.state.messages.concat([message])
     });
@@ -110,9 +104,7 @@ var Login = React.createClass({  // eslint-disable-line no-unused-vars
     this.props.tryLogin(this.state.username);
   },
   updateInput: function (e) {
-    console.log('update');
     if (e.keyCode === 13) {
-      console.log('enter');
       return this.submitUser();
     }
     this.setState({ username: e.target.value });
