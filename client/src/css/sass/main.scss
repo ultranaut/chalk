@@ -74,21 +74,21 @@ h1 {
       display: none;
   }
 
-  .messages .comment {
+  .comment {
     margin: 1em;
   }
 
-  .messages .user {
+  .user {
     display: inline-block;
     margin-right: 0.5em;
     font-weight: bold;
   }
 
-  .messages .user:after {
+  .user:after {
     content: ": ";
   }
 
-  .messages .copy {
+  .copy {
     display: inline-block;
   }
 }
