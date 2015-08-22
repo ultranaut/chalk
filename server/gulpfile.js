@@ -7,16 +7,18 @@ var lint = require('gulp-eslint');
 var plumber = require('gulp-plumber');
 var rename = require('gulp-rename');
 
-var srcJS = './src/foo.js';
+var config = {
+  src: './src/server.js'
+};
 
 // Tasks
 // ---------------------------------------------------------
 gulp.task('clean', function () {
-  del(['./foo.js']);
+  del(['./dist']);
 });
 
 gulp.task('lint', function () {
-  return gulp.src(srcJS)
+  return gulp.src(config.src)
     .pipe(plumber())
     .pipe(lint())
     .pipe(lint.format())
@@ -24,7 +26,7 @@ gulp.task('lint', function () {
 });
 
 gulp.task('build', ['clean', 'lint'], function () {
-  return gulp.src(srcJS)
+  return gulp.src(config.src)
     .pipe(plumber())
     .pipe(babel())
     .pipe(rename('index.js'))
@@ -32,7 +34,7 @@ gulp.task('build', ['clean', 'lint'], function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch(srcJS, ['lint']);
+  gulp.watch(config.src, ['lint']);
 });
 
 // default task
