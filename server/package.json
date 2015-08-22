@@ -12,20 +12,14 @@
   },
   "author": "John Shearer <john@ultranaut.com> (http://ultranaut.com)",
   "license": "MIT",
-  "bugs": {
-    "url": ""
-  },
   "homepage": "",
-  "files": [
-    "foo.js",
-    "LICENSE"
-  ],
   "devDependencies": {
     "babel": "^5.6.1",
     "del": "^1.2.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.1.0",
     "gulp-eslint": "^0.14.0",
+    "gulp-nodemon": "^2.0.3",
     "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2"
   },
