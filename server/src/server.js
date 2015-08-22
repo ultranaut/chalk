@@ -1,4 +1,4 @@
-/* jshint node: true */
+'use strict';
 
 var io = require('socket.io');
 
@@ -28,6 +28,16 @@ var chatServer = (function (io) {
     {user: 'lebron', message: 'what happens now?'}
   ];
 
+  function listUsers() {
+    var userList = [];
+    for (var i = 0, len = connections.length; i < len; i++) {
+      if (connections[i].store.data.nickname) {
+        userList.push(connections[i].store.data.nickname);
+      }
+    }
+    return userList;
+  }
+
   var server = io.listen(1337);
   /*
    * level of detail output to logger
@@ -47,24 +57,17 @@ var chatServer = (function (io) {
     });
     socket.on('newMessage', function (data) {
       socket.get('nickname', function (err, name) {
-        var message = {user: name, message: data.message};
-        conversation.push(message);
-        /* TODO: do I really need to do this twice? */
-        socket.emit('pushMessage', message);
-        socket.broadcast.emit('pushMessage', message);
+        if (!err) {
+          var message = {user: name, message: data.message};
+          conversation.push(message);
+          /* TODO: do I really need to do this twice? */
+          socket.emit('pushMessage', message);
+          socket.broadcast.emit('pushMessage', message);
+        }
       });
     });
   });
 
-  function listUsers() {
-    var userList = [];
-    for (var i = 0, len = connections.length; i < len; i++) {
-      if (connections[i].store.data.nickname) {
-        userList.push(connections[i].store.data.nickname);
-      }
-    }
-    return userList;
-  }
   return server;
 }(io));
 
