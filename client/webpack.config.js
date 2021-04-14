@@ -8,9 +8,25 @@ module.exports = {
     filename: 'bundle.js',
     path: path.join(__dirname, 'public'),
   },
-  plugins: [ 
+
+  module: {
+    rules: [
+      {
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
+        test: /\.js$/,
+        exclude: /node_modules/,
+      },
+    ],
+  },
+
+  plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html',
     }),
-  ]
+  ],
 };
