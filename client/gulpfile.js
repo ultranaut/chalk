@@ -10,7 +10,6 @@ var sass = require('gulp-sass');
 
 var paths = {
   src: './src',
-  html: './src/*.html',
   js: './src/js/**/*.js',
   jsx: './src/js/jsx/**/*.js',
   css: './src/css',
@@ -37,12 +36,6 @@ gulp.task('connect', function () {
   });
 });
 
-gulp.task('html', function () {
-  gulp.src(paths.html)
-    .pipe(plumber())
-    .pipe(connect.reload());
-});
-
 gulp.task('js', function () {
   gulp.src([paths.js, '!./src/js/app.js'])
     .pipe(plumber())
@@ -66,11 +59,10 @@ gulp.task('css', ['sass'], function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch([paths.html], ['html']);
   gulp.watch([paths.js], ['js']);
   gulp.watch([paths.jsx], ['react']);
   gulp.watch([paths.css], ['css']);
   gulp.watch([paths.sass], ['sass']);
 });
 
-gulp.task('default', ['connect', 'html', 'css', 'react', 'js', 'watch']);
+gulp.task('default', ['connect', 'css', 'react', 'js', 'watch']);
