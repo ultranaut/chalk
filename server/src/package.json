@@ -9,7 +9,7 @@
     "url": "http://github.com/ultranaut/bjarne/"
   },
   "dependencies": {
-    "socket.io": "0.9.x",
+    "socket.io": "2.4.x",
     "socket.io-client": "0.9.x"
   },
   "engines": {
