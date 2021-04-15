@@ -1,12 +1,13 @@
 {
-  "name": "bjarne",
-  "description": "Chatty-ness",
-  "author": "John Shearer <john@ultranaut.com> (https://www.ultranaut.com/)",
+  "name": "chat-server",
   "version": "0.1.0",
+  "description": null,
+  "main": "index.js",
+  "author": "John Shearer <john@ultranaut.com> (https://ultranaut.com)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://github.com/ultranaut/bjarne/"
+    "url": "http://github.com/ultranaut/react-chat/"
   },
   "dependencies": {
     "socket.io": "^4.0.1",
