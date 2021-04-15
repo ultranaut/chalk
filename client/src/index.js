@@ -1,13 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './components/App';
 
-const App = () => {
-  return (
-    <div>
-      <h1>React app</h1>
-      <h3>coming soon...</h3>
-    </div>
-  )
-}
-
-ReactDOM.render(<App />, document.querySelector('#root'));
+ReactDOM.render(
+  <App url="http://localhost:1337" />,
+  document.querySelector('#root')
+);
