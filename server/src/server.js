@@ -44,14 +44,6 @@ var chatServer = (function (io) {
   }
 
   var server = io;
-  /*
-   * level of detail output to logger
-   * 0 - error
-   * 1 - warn
-   * 2 - info
-   * 3 - debug (default)
-   */
-  server.set('log level', 2);
   server.sockets.on('connection', function (socket) {
     connections.push(socket);
     socket.on('setNickname', function (name) {

@@ -10,7 +10,8 @@
     "url": "http://github.com/ultranaut/react-chat/"
   },
   "scripts": {
-    "start": "nodemon src/server.js"
+    "start": "nodemon src/server.js",
+    "debug": "DEBUG=socket.io:client* nodemon src/server.js"
   },
   "dependencies": {
     "socket.io": "^4.0.1",
