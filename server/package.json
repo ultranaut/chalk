@@ -9,11 +9,17 @@
     "type": "git",
     "url": "http://github.com/ultranaut/react-chat/"
   },
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
   "dependencies": {
     "socket.io": "^4.0.1",
     "socket.io-client": "^4.0.1"
   },
   "engines": {
     "node": "14.16.x"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
