@@ -1,6 +1,11 @@
 'use strict';
 
-var io = require('socket.io');
+const options = {
+  cors: {
+    origin: 'http://localhost:8080',
+  }
+};
+var io = require('socket.io')(1337, options);
 
 var chatServer = (function (io) {
   var connections = [];
@@ -38,7 +43,7 @@ var chatServer = (function (io) {
     return userList;
   }
 
-  var server = io.listen(1337);
+  var server = io;
   /*
    * level of detail output to logger
    * 0 - error
