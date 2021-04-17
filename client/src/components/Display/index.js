@@ -1,7 +1,7 @@
 import React from 'react';
-import MessageList from './MessageList';
-import Login from './Login';
-import Input from './Input';
+import MessageList from '../MessageList';
+import Login from '../Login';
+import Input from '../Input';
 
 const Display = (props) => {
   return (
