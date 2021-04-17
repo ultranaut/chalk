@@ -35,11 +35,11 @@ var chatServer = (function (io) {
 
   function listUsers() {
     var userList = [];
-    for (var i = 0, len = connections.length; i < len; i++) {
-      if (connections[i].store.data.nickname) {
-        userList.push(connections[i].store.data.nickname);
-      }
-    }
+    // for (var i = 0, len = connections.length; i < len; i++) {
+    //   if (connections[i].store.data.nickname) {
+    //     userList.push(connections[i].store.data.nickname);
+    //   }
+    // }
     return userList;
   }
 
