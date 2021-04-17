@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 120%;
+  font-family: sans-serif;
+}
+
+#root {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: #055;
+}
+
+header {
+  top: 0;
+  height: 40px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  background: #055;
+  color: white;
+  margin: 0;
+  padding: 0;
+  font-family: serif;
+}
+
+h1 {
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  font-size: 40px;;
+}
+
+.wrapper {
+  height: 100%;
+}

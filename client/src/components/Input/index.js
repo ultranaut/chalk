@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Input.scss';
 
 class Input extends Component {
   state = { message: '' };

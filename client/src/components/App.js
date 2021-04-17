@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Display from './Display';
-import '../css/main.scss';
+import './App.scss';
 
 class App extends Component {
   state = {

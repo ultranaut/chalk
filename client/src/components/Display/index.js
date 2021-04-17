@@ -2,6 +2,7 @@ import React from 'react';
 import MessageList from '../MessageList';
 import Login from '../Login';
 import Input from '../Input';
+import './Display.scss';
 
 const Display = (props) => {
   return (
