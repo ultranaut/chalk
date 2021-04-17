@@ -47,7 +47,7 @@ var chatServer = (function (io) {
   server.sockets.on('connection', function (socket) {
     connections.push(socket);
     socket.on('setNickname', function (name) {
-      socket.set('nickname', name);
+      socket.nickname = name;
       socket.emit('initConversation', conversation);
       socket.emit('updateUserList', listUsers());
       socket.broadcast.emit('updateUserList', listUsers());
